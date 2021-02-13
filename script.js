@@ -1,22 +1,9 @@
-/* ТАБЫ - это способ организации информации. 
-Например у нас есть много статей, а надо чтобы на странице показывалась одна, а по клику ну другую рубрику, другая статья. это и есть табы. 
-*/
-
-
-
-
-// любой проект начинается с обработчика определенного события на всю страницу.
-//Например. тяжелый сайт, все еще не загрузилось, а скрипт уже начинает работать и выдает ошибку
-//DOMContentLoaded
-//этим я говорю, что джс будет выполнятся только после загрузки структуры дом дерева. Картинки могут дальше грузится потом, нам это не важно.
-window.addEventListener('DOMContentLoaded', function () {
-    //здесь будет весь код страницы
-    'use strict';
+    function tabModule (button, btnContainer, tab) {
 
     //нужно найти кнопки, блок контента и блок c кнопками
-    let tab = document.querySelectorAll('.info-header-tab'),
-        info = document.querySelector('.info-header'),
-        tabContent = document.querySelectorAll('.info-tabcontent');
+    let tabButton = document.querySelectorAll(button),
+        buttonsContainer = document.querySelector(btnContainer),
+        tabContent = document.querySelectorAll(tab);
 
     function hideTabContent (a) {
         for (let i = a; i< tabContent.length; i++) {
@@ -37,11 +24,11 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     //обработчик клика
-    info.addEventListener('click', function (evt) {
+    buttonsContainer.addEventListener('click', function (evt) {
         let target = evt.target;
         if(target && target.classList.contains('info-header-tab')) {
-            for (let i = 0; i<tab.length; i++) {
-                if (target == tab[i]) {
+            for (let i = 0; i<tabButton.length; i++) {
+                if (target == tabButton[i]) {
                     hideTabContent(0);
                     showTabContent(i);
                     break;
@@ -51,4 +38,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
     })
-}
+
+    }
+
+    
+    tabModule('.info-header-tab', '.info-header', '.info-tabcontent');
