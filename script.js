@@ -1,4 +1,4 @@
-    function tabModule (button, btnContainer, tab) {
+function tabModule (button, btnContainer, tab) {
 
     //нужно найти кнопки, блок контента и блок c кнопками
     let tabButton = document.querySelectorAll(button),
@@ -26,7 +26,7 @@
     //обработчик клика
     buttonsContainer.addEventListener('click', function (evt) {
         let target = evt.target;
-        if(target && target.classList.contains('info-header-tab')) {
+        if(target.closest(button)) {
             for (let i = 0; i<tabButton.length; i++) {
                 if (target == tabButton[i]) {
                     hideTabContent(0);
@@ -42,4 +42,4 @@
     }
 
     
-    tabModule('.info-header-tab', '.info-header', '.info-tabcontent');
+    tabModule('.hamburger__left-menu-item', '.hamburger__left-menu', '.hamburger__right-menu-item');
